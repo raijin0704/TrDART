@@ -32,7 +32,7 @@ def change_feature(df):
     # LIMIT_BALで分割
     split_col = "PAY_3"
     domains = pd.qcut(df[split_col], 3, labels=['0', '1', '2'])
-    print(domains.value_counts())
+    # print(domains.value_counts())
     df["PAY_3_CAT"] = domains
 
     return df.drop(columns=[split_col])

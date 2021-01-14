@@ -40,7 +40,7 @@ def change_feature(df):
 
     split_col = "Water"
     domains = pd.qcut(df[split_col], 3, labels=['0', '1', '2'])
-    print(domains.value_counts())
+    # print(domains.value_counts())
     df["Water_CAT"] = domains
 
     return df.drop(columns=[split_col])

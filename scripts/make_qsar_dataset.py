@@ -28,7 +28,7 @@ def change_feature(df):
     # SM1_Dz(Z)で分割
     split_col = "SM1_Dz(Z)"
     domains = pd.qcut(df[split_col], 3, labels=['0', '1', '2'])
-    print(domains.value_counts())
+    # print(domains.value_counts())
     df["SM1_Dz_CAT"] = domains
 
     return df.drop(columns=[split_col])

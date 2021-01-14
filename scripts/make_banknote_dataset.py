@@ -31,7 +31,7 @@ def change_feature(df):
     # curtosis of Wavelet Transformed image (continuous)で分割
     split_col = "curtosis of Wavelet Transformed image (continuous)"
     domains = pd.qcut(df[split_col], 3, labels=['0', '1', '2'])
-    print(domains.value_counts())
+    # print(domains.value_counts())
     df["curtosis_CAT"] = domains
 
     return df.drop(columns=[split_col])
