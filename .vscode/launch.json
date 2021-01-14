@@ -1,0 +1,50 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "experiments",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/experiments.py",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}",
+        "args": [
+          "adult",
+          "uci"
+        ]
+      },
+      {
+        "name": "Python: Current File",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}"
+      },
+      {
+        "name": "Docker: experiments",
+        "type": "docker",
+        "request": "launch",
+        "preLaunchTask": "docker-run: debug",
+        "python": {
+          "pathMappings": [
+            {
+              "localRoot": "${workspaceFolder}",
+              "remoteRoot": "/work"
+            }
+          ],
+          "projectType": "tradabosot"
+        }
+      },
+      {
+        "name": "Docker Node.js Launch and Attach",
+        "type": "docker",
+        "request": "launch",
+        "preLaunchTask": "docker-run: debug",
+        "platform": "node"
+      }
+    ]
+}

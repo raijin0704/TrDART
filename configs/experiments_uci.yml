@@ -1,0 +1,228 @@
+datasets:
+  auto_mobile:
+    dataset_name: auto_mobile
+    task: regression
+    split_feature_name: bore
+    y_feature: price
+    split_feature: bore
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+
+  autoMPG:
+    dataset_name: autoMPG
+    task: regression
+    split_feature_name: acceleration
+    y_feature: mpg
+    split_feature: acceleration
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+
+  concrete:
+    dataset_name: concrete
+    task: regression
+    split_feature_name: Water
+    y_feature: Concrete compressive strength
+    split_feature: Water_CAT
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+
+  housing:
+    dataset_name: housing
+    task: regression
+    split_feature_name: NOX
+    y_feature: MEDV
+    split_feature: NOX
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+  
+  mushroom:
+    dataset_name: mushroom
+    task: classification
+    split_feature_name: stalk_shape
+    y_feature: Attributes
+    split_feature: stalk_shape
+    target_domain: 
+    metric: auc
+  
+  adult:
+    dataset_name: adult
+    task: classification
+    split_feature_name: sex
+    y_feature: income
+    split_feature: sex
+    target_domain: 
+    metric: auc
+
+  bank:
+    dataset_name: bank
+    task: classification
+    split_feature_name: contact
+    y_feature: y
+    split_feature: contact
+    target_domain: 
+    metric: auc
+
+  banknote:
+    dataset_name: banknote
+    task: classification
+    split_feature_name: curtosis
+    y_feature: class (integer)
+    split_feature: curtosis_CAT
+    target_domain: 
+    metric: auc
+
+  default:
+    dataset_name: default
+    task: classification
+    split_feature_name: PAY_3
+    y_feature: default payment next month
+    split_feature: PAY_3_CAT
+    target_domain: 
+    metric: auc
+
+  australian:
+    dataset_name: australian
+    task: classification
+    split_feature_name: A7
+    y_feature: A15
+    split_feature: A7_CAT
+    target_domain: 
+    metric: auc
+
+  bike:
+    dataset_name: bike
+    task: regression
+    split_feature_name: yr
+    y_feature: cnt
+    split_feature: yr
+    target_domain: 
+      - 1
+    metric: RMSE
+  
+  traffic:
+    dataset_name: traffic
+    task: regression
+    split_feature_name: is_holiday
+    y_feature: traffic_volume
+    split_feature: is_holiday
+    target_domain: 
+      - 1
+    metric: RMSE
+
+  energy:
+    dataset_name: energy
+    task: regression
+    split_feature_name: relative
+    y_feature: Heating Load
+    split_feature: Relative_Compactness_CAT
+    target_domain: 
+    metric: RMSE
+
+  qsar:
+    dataset_name: qsar
+    task: regression
+    split_feature_name: SM1_Dz(Z)
+    y_feature: quantitative response
+    split_feature: SM1_Dz_CAT
+    target_domain: 
+    metric: RMSE
+
+
+experiments:
+  experiment_name: baseline
+  n_experiments: 30
+  n_targets: 25
+  source_sampling: false
+  methods:
+    - target GBDT
+    - all GBDT
+    # - target AdaBoost
+    # - all AdaBoost
+    # - TrAdaBoost
+    - two-stage TrAdaBoost
+    # - MS two-stage TrAdaBoost
+    - Trbagg
+    # - TransferStacking
+    - only Dropout
+    - target DART
+    - TrDART
+
+model_params:
+  AdaBoost:
+    n_estimators: 100
+    learning_rate: 0.1
+    base_estimator: 
+      name: DecisionTree
+      max_depth: 6
+
+  TrAdaBoost:
+    n_estimators: 100
+    learning_rate: 0.1
+    base_estimator:
+      name: DecisionTree
+      max_depth: 6
+
+  two-stage TrAdaBoost:
+    n_estimators: 100
+    learning_rate: 0.1
+    steps: 30
+    fold: 10
+    base_estimator: 
+      name: DecisionTree
+      max_depth: 6
+  
+  MS two-stage TrAdaBoost:
+    n_estimators: 30
+    learning_rate: 0.5
+    steps: 30
+    fold: 10
+    base_estimator: 
+      name: DecisionTree
+      max_depth: 6 
+
+  Trbagg:
+    n_estimators: 100
+    filter_func: SC
+    base_estimator:
+      name: DecisionTree
+      max_depth: 6
+
+  TransferStacking:
+    expert_model: AdaBoost
+    fold: 10
+    meta_model: 
+      name: Lasso
+      alpha: 1
+      search_params: 
+        alpha: [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5]
+    base_estimator: null
+
+  GradientBoostingDecisionTree:
+    n_estimators: 1000
+    learning_rate: 0.1
+    max_depth: 6
+    validation_fraction: 0.3
+    n_iter_no_change: 5
+    tol: 1e-4
+
+  DartForDomainAdaptation:
+    n_estimators: 1000
+    learning_rate: 0.1
+    max_depth: 6
+    validation_fraction: 0.3
+    n_iter_no_change: 5
+    tol: 1e-4
+    drop_rate: 
+    is_best_drop: true
+    # is_drop_dynamically: False
+    n_estimators_add: 200
+    dart_rate: 0.5
+    drop_mode: latest
+
+
+
+

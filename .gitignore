@@ -1,0 +1,23 @@
+# environment
+**__pycache__**
+.vscode/*
+!.vscode/launch.json
+**.ipynb_checkpoints
+
+# dataset
+dataset/**
+!dataset/.gitkeep
+
+# mlflow
+mlruns
+
+# result
+result/**
+!result/.gitkeep
+
+# all
+**.png
+**.mp4
+**.csv
+**.pickle
+**zip

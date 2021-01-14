@@ -1,0 +1,12 @@
+# version: '3'
+
+# services:
+#   tradaboost:
+#     build: .
+#     ports:
+#       - '8888:8888'
+#     volumes:
+#       - '.:/work'
+#       - '../my-scikit-learn/sklearn:/module/sklearn'
+#     tty: true
+#     stdin_open: true

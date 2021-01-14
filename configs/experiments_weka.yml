@@ -1,0 +1,42 @@
+datasets:
+  auto_mobile:
+    dataset_name: auto_mobile
+    task: regression
+    split_feature_name: label
+    y_feature: z
+    split_feature: label
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+
+  autoMPG:
+    dataset_name: autoMPG
+    task: regression
+    split_feature_name: label
+    y_feature: mpg
+    split_feature: label
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+
+  concrete:
+    dataset_name: concrete
+    task: regression
+    split_feature_name: label
+    y_feature: i
+    split_feature: label
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+
+  housing:
+    dataset_name: housing
+    task: regression
+    split_feature_name: label
+    y_feature: n
+    split_feature: label
+    n_domains: 3
+    target_domain: 
+    metric: RMSE
+
+
